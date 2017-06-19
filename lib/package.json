@@ -1,0 +1,40 @@
+{
+  "name": "storyseeds",
+  "version": "1.0.0",
+  "description": "community created/driven creative writing",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wpruitt/storyseeds.git"
+  },
+  "keywords": [
+    "creative",
+    "writing",
+    "short",
+    "stories",
+    "story",
+    "worlds"
+  ],
+  "author": "Willie Darrin Pruitt Jr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wpruitt/storyseeds/issues"
+  },
+  "homepage": "https://github.com/wpruitt/storyseeds#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "uglify-es": "^3.0.17"
+  },
+  "dependencies": {
+    "angular": "^1.6.4",
+    "angular-route": "^1.6.4",
+    "firebase": "^4.1.2",
+    "matchdep": "^1.0.1"
+  }
+}

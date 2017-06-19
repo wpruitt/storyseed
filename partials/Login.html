@@ -1,0 +1,14 @@
+<header ng-include src="'partials/Navbar.html'"></header>
+
+<div>
+	<form class="form">
+		<label for="loginEmail">Email</label>
+		<input id="loginEmail" type="email" class="input" ng-model="obj.email">
+		<label for="email">Password</label>
+		<input id="loginPassword" type="password"  class="input" ng-model="loginPassword">
+		<button ng-click="login()">Login</button>
+	</form>
+</div>
+<div>
+	<a href="#!/register"<button>NewUser</button></a>
+</div>

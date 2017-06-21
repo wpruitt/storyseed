@@ -1,9 +1,9 @@
 "use strict";
 
-app.controller('UploadCtrl', function($scope, $routeParams, FBDataFactory, FBAuthFactory, $location) {
+app.controller('CreateBranchCtrl', function($scope, FBAuthFactory, FBDataFactory, $location, $routeParams) {
 
 	let currentUser = FBAuthFactory.getUser();
-	
+
 	$scope.obj = {
 		uid: currentUser.uid,
 		type: "",
@@ -13,11 +13,9 @@ app.controller('UploadCtrl', function($scope, $routeParams, FBDataFactory, FBAut
 		genre: ["test1", "test2"],
 		tags: ["test1", "test2"],
 		NSFW: false,
-		seedId: "",
-		content: "",
-		branchIds: ""
+		seedId: $routeParams.contentId,
+		content: ""
 	};
-
 
 	$scope.submit = function() {
 		FBDataFactory.createContent($scope.obj)
@@ -29,8 +27,17 @@ app.controller('UploadCtrl', function($scope, $routeParams, FBDataFactory, FBAut
 			};
 			FBDataFactory.addId(response.data.name, idObj)
 			.then((response) => {
-				console.log("response", response);
-				$location.url("/explore");
+					console.log("response from addId", response);
+					let branchObj = {
+					[response.data.id] : $routeParams.contentId
+				};
+				FBDataFactory.addBranchId($routeParams.contentId, branchObj)
+				.then((response) => {
+					$location.url("/explore");
+				})
+				.catch((error) => {
+					console.log("error", error);
+				});
 			})
 			.catch((error) => {
 				console.log("error", error);

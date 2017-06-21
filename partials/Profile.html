@@ -1,7 +1,31 @@
 <header ng-include src="'partials/Navbar.html'"></header>
 
 <div class="profile-info">
-	<div class="profile-picture-container">
-		<img ng-src="{{user.image}}">
+	<div>
+		<div class="profile-picture-container">
+			<img ng-src="{{profile.image}}">
+		</div>
+		<input ng-model="editedImage.image" type="text" placeholder="{{profile.image}}">
+		<button ng-click="editProfilePicture()">Edit Profile Picture</button>
+	</div>
+	<div class="display-name-container">
+		<h3>{{profile.displayName}}</h3>
+		<input ng-model="editedDisplayName.displayName" type="text" placeholder="{{profile.displayName}}">
+		<button ng-click="editDisplayName()">Edit Display Name</button>
+	</div>
+	<div class="bio-container">
+		<input ng-model="editedBio.bio" type="text" placeholder="{{profile.bio}}">
+		<button ng-click="editBio()">Edit Bio</button>
+	</div>
+</div>
+
+<div class="search-filter"><input id="filter" type="filter" placeholder="Filter"><div>
+
+<div ng-repeat="content in usersContents">
+	<div class="card">
+		<div class="card-image">
+			<a ng-click="getContent(content.id)"><img ng-src="{{content.image}}"></a>
+		</div>
+		<div class="card-content">Title: {{content.title}}<br>Description: {{content}}</div>
 	</div>
 </div>

@@ -34,18 +34,22 @@ app.config(($routeProvider) => {
 		controller: 'UploadCtrl'/*,
 		resolve: {isAuth}*/
 	})
+	.when('/createbranch/:contentId', {
+		templateUrl: 'partials/CreateBranch.html',
+		controller: 'CreateBranchCtrl'
+	})
 	.when('/explore', {
 		templateUrl: 'partials/Explore.html',
 		controller: 'ExploreCtrl'
 	})
-	.when('/profile', {
+	.when('/profile/:userId', {
 		templateUrl: 'partials/Profile.html',
-		controller: 'ProfileCtrl',
+		controller: 'ProfileCtrl'/*,
 		resolve: {isAuth}
-	})
-	.when('/content-view/:contentId', {
+*/	})
+	.when('/content/:contentTitle/:contentId', {
 		templateUrl: 'partials/ContentView.html',
-		controller: 'ContentView'
+		controller: 'ContentViewCtrl'
 	})
 	.when('/logout', {
 		templateUrl: 'partials/Logout.html',

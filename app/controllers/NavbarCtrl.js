@@ -2,6 +2,11 @@
 
 app.controller('NavbarCtrl', function($scope, FBAuthFactory){
 
+	let currentUser = FBAuthFactory.getUser();
+
+	$scope.currentUser = currentUser;
+	console.log("$scope.currentUser", currentUser);
+
 	FBAuthFactory.isAuthenticated()
 	.then((user) => {
 		console.log("userInfo", user);

@@ -48,6 +48,9 @@ app.controller('ContentViewCtrl', function($scope, FBAuthFactory, FBDataFactory,
 		$location.url(`/createbranch/${contentId}`);
 	};
 
+	$scope.deletContent = function(contentId) {
+		FBDataFactory.getContent
+
 	$scope.deleteContent = function(contentId) {
 		if(objHasBranches($scope.branches)) {
 			console.log("goanon", true, $scope.branches);

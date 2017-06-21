@@ -12,6 +12,7 @@ app.controller('ProfileCtrl', function($scope, FBAuthFactory, FBDataFactory, $lo
 	FBDataFactory.getUser(currentUser.uid)
 		.then((userData) => {
 			let user = userData;
+			console.log("user", user);
 			userKey = Object.keys(user.data);
 			$scope.profile = user.data[Object.keys(user.data)];
 			profile =  user.data[Object.keys(user.data)];

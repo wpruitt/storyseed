@@ -19,6 +19,14 @@ app.controller('ContentViewCtrl', function($scope, FBAuthFactory, FBDataFactory,
 			console.log("error",error);
 		});
 
+	let objHasBranches = (obj) => {
+		for(var key in obj) {
+			if(obj.hasOwnProperty(key))
+				return true;
+		}
+		return false;
+	};
+
 	$scope.showDelBtn = function(contentId) {
 		console.log("current/content", currentUser.uid, contentId);
 		if(currentUser.uid === contentId){
@@ -40,7 +48,33 @@ app.controller('ContentViewCtrl', function($scope, FBAuthFactory, FBDataFactory,
 		$location.url(`/createbranch/${contentId}`);
 	};
 
-	$scope.deletContent = function(contentId) {
-		FBDataFactory.getContent
+	$scope.deleteContent = function(contentId) {
+		if(objHasBranches($scope.branches)) {
+			console.log("goanon", true, $scope.branches);
+			FBDataFactory.makeContentAnon(contentId)
+			.then((response) => {
+				console.log("response", response);
+			})
+			.catch((error) => {
+				console.log("error", error);
+			});
+		}else{
+			console.log("candel", false);
+			FBDataFactory.deleteContent(contentId)
+			.then((response) => {
+				console.log("response", response);
+			})
+			.catch((error) => {
+				console.log("error", error);
+			});
+		}
 	};
 });
+
+
+
+// iterate though list of objs showing key and value pair
+// angular.forEach($scope.branches, function(key, value) {
+// 				console.log("key/value", key, value);
+// 				FBDataFactory.makeContentAnon()
+// 			});

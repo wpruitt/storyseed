@@ -6,8 +6,8 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 		return $q((resolve, reject) => {
 			$http.get(`${FBCreds.databaseURL}/content.json`)
 			.then((content) => {
-				let allContent = content.data;
-				console.log("allContent", allContent);
+				let allContent = Object.values(content.data);
+				console.log("allContent", allContent, content.data);
 				resolve(allContent);
 			})
 			.catch((error) => {
@@ -28,6 +28,20 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 			});
 		});
 	};
+
+	const getBranches = (seedId) => {
+		return $q((resolve, reject) => {
+			$http.get(`${FBCreds.databaseURL}/content.json?orderBy="seedId"&equalTo="${seedId}"`)
+			.then((content) => {
+				console.log("content", content);
+				resolve(content.data);
+			})
+			.catch((error) => {
+				reject(error);
+			});
+		});
+	};
+
 
 	const getUsersContent = (userId) =>{
 		return $q((resolve, reject) => {
@@ -108,6 +122,18 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 		});
 	};
 
+	const delUser = (userId) => {
+		return $q((resolve, reject) => {
+			$http.delete(`${FBCreds.databaseURL}/users.json?orderBy="uid"&equalTo="${userId}"`)
+			.then((response) => {
+				resolve(response);
+			})
+			.catch((error) => {
+				reject(error);
+			});
+		});
+	};
+
 	const editProfile = (editedObj, userId) => {
 		return $q((resolve, reject) =>{
 			let newObj = JSON.stringify(editedObj);
@@ -148,6 +174,6 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 		});
 	};
 
-	return {getAllContent, getContent, getUsersContent, createContent, addId, addBranchId, createUser, getUser, editProfile, makeContentAnon, deleteContent};
+	return {getAllContent, getContent, getUsersContent, createContent, getBranches, addId, addBranchId, createUser, getUser, delUser, editProfile, makeContentAnon, deleteContent};
 
 }]);

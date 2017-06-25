@@ -12,13 +12,13 @@ app.controller('NavbarCtrl', function($scope, FBAuthFactory){
 		console.log("userInfo", user);
 		$scope.login = "Logout";
 		$scope.isLoggedIn = true;
-		console.log("$scope.login", $scope.login);
+		console.log("$scope.isLoggedIn", $scope.isLoggedIn);
 	})
 	.catch((error) => {
 		console.log("userError", error);
 		$scope.login = "Login";
 		$scope.isLoggedIn = false;
-		console.log("$scope.login", $scope.login);
+		console.log("Error-$scope.isLoggedIn", $scope.isLoggedIn);
 	});
 
 

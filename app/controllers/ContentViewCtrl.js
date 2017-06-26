@@ -100,3 +100,13 @@ app.controller('ContentViewCtrl', function($scope, FBAuthFactory, FBDataFactory,
 	// $scope.moDesc = function(description, event) {
 	// 	event.currentTarget.innerHTML = description;
 	// };
+
+
+
+
+// iterate though list of objs showing key and value pair
+// angular.forEach($scope.branches, function(key, value) {
+// 				console.log("key/value", key, value);
+// 				FBDataFactory.makeContentAnon()
+// 			});
+

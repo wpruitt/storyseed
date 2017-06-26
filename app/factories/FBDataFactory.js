@@ -42,7 +42,6 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 		});
 	};
 
-
 	const getUsersContent = (userId) =>{
 		return $q((resolve, reject) => {
 			console.log(`${FBCreds.databaseURL}/content.json?orderBy="uid"&equalTo="${userId}"`);
@@ -152,7 +151,7 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 
 	const makeContentAnon = (contentId) => {
 		return $q((resolve, reject) => {
-			$http.del (`${FBCreds.databaseURL}/content/${contentId}/uid.json`)
+			$http.delete(`${FBCreds.databaseURL}/content/${contentId}/uid.json`)
 			.then((response) => {
 				resolve(response);
 			})
@@ -164,7 +163,7 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 
 	const deleteContent = (contentId) => {
 		return $q((resolve, reject) => {
-			$http.del (`${FBCreds.databaseURL}/content/${contentId}.json`)
+			$http.delete(`${FBCreds.databaseURL}/content/${contentId}.json`)
 			.then((response) => {
 				resolve(response);
 			})

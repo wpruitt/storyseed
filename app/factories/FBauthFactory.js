@@ -1,6 +1,6 @@
 "use strict";
 
-app.factory('FBAuthFactory', ['$location', function ($location) {
+app.factory('FBAuthFactory', function ($location) {
 
 	let currentUser = null;
 
@@ -54,4 +54,4 @@ app.factory('FBAuthFactory', ['$location', function ($location) {
 	};
 
 	return {FBRegisterUser, FBLoginUser, FBLogoutUser, isAuthenticated, getUser};
-}]);
+});

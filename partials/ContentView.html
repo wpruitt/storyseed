@@ -1,11 +1,15 @@
 <header ng-include="'partials/Navbar.html'"></header>
 
-<div>
+<div class="card-holder">
 	<div class="card">
 		<div class="card-image">
-			<img ng-src="{{content.image}}"></a>
+			<img ng-src="{{content.image}}">
 		</div>
-		<div class="card-content">Title: {{content.title}}<br>Description: {{content.description}}</div>
+		<div class="card-title-description">
+			<label>Title: </label>
+			<h4>{{content.title}}</h5>
+			<label>Description: </label>
+			<p>{{content.description}}</p>
 		<button ng-click="createBranch(content.id)">Create Branch</button>
 		<button ng-if="showDelBtn(content.uid)" ng-click="deleteContent(content.id)">Delete Content</button>
 	</div>

@@ -6,8 +6,8 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 		return $q((resolve, reject) => {
 			$http.get(`${FBCreds.databaseURL}/content.json`)
 			.then((content) => {
-				let allContent = content.data;
-				console.log("allContent", allContent);
+				let allContent = Object.values(content.data);
+				console.log("allContent", allContent, content.data);
 				resolve(allContent);
 			})
 			.catch((error) => {
@@ -123,7 +123,7 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 
 	const delUser = (userId) => {
 		return $q((resolve, reject) => {
-			$http.del(`${FBCreds.databaseURL}/users.json?orderBy="uid"&equalTo="${userId}"`)
+			$http.delete(`${FBCreds.databaseURL}/users.json?orderBy="uid"&equalTo="${userId}"`)
 			.then((response) => {
 				resolve(response);
 			})

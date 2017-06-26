@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller('RegisterUserCtrl', ['$scope', 'FBAuthFactory', 'FBDataFactory', '$location', function($scope, FBAuthFactory, FBDataFactory, $location){
+app.controller('RegisterUserCtrl', function($scope, FBAuthFactory, FBDataFactory, $location, $route){
 
 	// if(FBAuthFactory.isAuthenticated()) {
 	// 	console.log(""	}else{)
@@ -32,4 +32,4 @@ app.controller('RegisterUserCtrl', ['$scope', 'FBAuthFactory', 'FBDataFactory', 
 	};
 
 	
-}]);
+});

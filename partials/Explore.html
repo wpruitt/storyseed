@@ -1,12 +1,17 @@
 <header ng-include src="'partials/Navbar.html'"></header>
 
-<div class="search-filter"><input id="filter" type="filter" placeholder="Filter"><div>
+<div class="search-filter"><input id="filter" type="filter" placeholder="Filter" ng-model="searchText"><div>
 
-<div ng-repeat="content in contents">
+<div class="card-holder" ng-repeat="content in contents | filter:searchText">
 	<div class="card">
 		<div class="card-image">
 			<a ng-click="getContent(content.id)"><img ng-src="{{content.image}}"></a>
 		</div>
-		<div class="card-content">Title: {{content.title}}<br>Description: {{content}}</div>
+		<aside class="card-title-description">
+			<label>Title: </label>
+			<h4>{{content.title}}</h4>
+			<label>Description: </label>
+			<p>{{content.description}}</p>
+		</aside>
 	</div>
 </div>

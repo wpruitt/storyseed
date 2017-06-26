@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller('ContentViewCtrl', function($scope, FBAuthFactory, FBDataFactory, $location, $routeParams){
+app.controller('ContentViewCtrl', function($scope, FBAuthFactory, FBDataFactory, $location, $routeParams, $route){
 
 	let currentUser = FBAuthFactory.getUser();
 
@@ -11,13 +11,22 @@ app.controller('ContentViewCtrl', function($scope, FBAuthFactory, FBDataFactory,
 		});
 
 	FBDataFactory.getBranches($routeParams.contentId)
-		.then((contentData) => {
-			$scope.branches = contentData;
-			console.log("branches", $scope.branches);
-		})
-		.catch((error) => {
-			console.log("error",error);
-		});
+	.then((contentData) => {
+		$scope.branches = contentData;
+		console.log("branches", $scope.branches);
+	})
+	.catch((error) => {
+		console.log("error",error);
+	});
+
+	$scope.showDelBtn = function(contentId) {
+		console.log("current/content", currentUser.uid, contentId);
+		if(currentUser.uid === contentId){
+			return true;
+		}else{
+			return false;
+		}
+	};
 
 	let objHasBranches = (obj) => {
 		for(var key in obj) {
@@ -48,15 +57,13 @@ app.controller('ContentViewCtrl', function($scope, FBAuthFactory, FBDataFactory,
 		$location.url(`/createbranch/${contentId}`);
 	};
 
-	$scope.deletContent = function(contentId) {
-		FBDataFactory.getContent
-
 	$scope.deleteContent = function(contentId) {
 		if(objHasBranches($scope.branches)) {
 			console.log("goanon", true, $scope.branches);
 			FBDataFactory.makeContentAnon(contentId)
 			.then((response) => {
 				console.log("response", response);
+				$route.reload();
 			})
 			.catch((error) => {
 				console.log("error", error);
@@ -66,13 +73,34 @@ app.controller('ContentViewCtrl', function($scope, FBAuthFactory, FBDataFactory,
 			FBDataFactory.deleteContent(contentId)
 			.then((response) => {
 				console.log("response", response);
+				$route.reload();
 			})
 			.catch((error) => {
 				console.log("error", error);
 			});
 		}
 	};
+
+	$scope.makeAnon = function(contentId){
+		FBDataFactory.makeContentAnon(contentId)
+		.then((response) => {
+			console.log("response", response);
+			$route.reload();
+		})
+		.catch((error) => {
+			console.log("error", error);
+		});
+	};
+
+	$scope.createBranch = function(contentId) {
+		$location.url(`/createbranch/${contentId}`);
+	};
 });
+
+	// $scope.moDesc = function(description, event) {
+	// 	event.currentTarget.innerHTML = description;
+	// };
+
 
 
 
@@ -81,3 +109,4 @@ app.controller('ContentViewCtrl', function($scope, FBAuthFactory, FBDataFactory,
 // 				console.log("key/value", key, value);
 // 				FBDataFactory.makeContentAnon()
 // 			});
+

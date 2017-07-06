@@ -1,3 +1,51 @@
+.modal-card {
+	margin: 0px 0px 1rem;
+	padding: 0px 3px;
+	height: 200px;
+	background-color: rgba(0, 0, 0, 0);
+}
+
+.modal-card-body {
+	background-color: white;
+}
+
+.card-title-description {
+	float: right;
+	text-align: center;
+	color: $prim;
+	width: 70%;
+	padding-left: 2px;
+	text-overflow: ellipsis;
+	height: 200px
+}
+
+.card-title-description p, label, h2 {
+	text-align: center;
+}
+
+.card-title-description p {
+	height: auto;
+}
+
+.card-title-description label {
+	height: auto;
+}
+
+
+.card-title-description h2 {
+	height: auto;
+}
+
+
+
+.content-card-head {
+	margin-bottom: 20px;
+}
+
+.content {
+	border-left: 3px solid $prim;
+}
+
 .sidebar {
   position: fixed;
   right: 0;
@@ -5,3 +53,4 @@
   background-color: red;
   text-align: right;
 }
+

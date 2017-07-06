@@ -1,13 +1,17 @@
-<header ng-include src="'partials/Navbar.html'"></header>
-
-<div>
+<div class="container">
 	<form>
+	<div class="form-group">
 		<label for="registerUsername">Username</label>
-		<input id="registerUsername" type="text" class="input" ng-model="obj.username">
+		<input id="registerUsername" type="text" class="form-control" ng-model="obj.username">
+	</div>
+	<div class="form-group">
 		<label for="registerEmail">E-mail</label>
-		<input id="email" type="email"  class="input" ng-model="obj.email">
+		<input id="email" type="email"  class="form-control" ng-model="obj.email">
+	</div>
+	<div class="form-group">
 		<label for="email">Password</label>
-		<input id="loginPassword" type="password"  class="input" ng-model="registerPassword">
-		<button ng-click="register()">Register</button>
+		<input id="loginPassword" type="password"  class="form-control" ng-model="registerPassword">
+	</div>
+		<button class="mybutton" ng-click="register()">Register</button>
 	</form>
 </div>

@@ -34,7 +34,7 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 			$http.get(`${FBCreds.databaseURL}/content.json?orderBy="seedId"&equalTo="${seedId}"`)
 			.then((content) => {
 				console.log("content", content);
-				resolve(content.data);
+				resolve(Object.values(content.data));
 			})
 			.catch((error) => {
 				reject(error);
@@ -47,7 +47,8 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 			console.log(`${FBCreds.databaseURL}/content.json?orderBy="uid"&equalTo="${userId}"`);
 			$http.get(`${FBCreds.databaseURL}/content.json?orderBy="uid"&equalTo="${userId}"`)
 			.then ((content) => {
-				resolve(content);
+				let usersContent = Object.values(content.data);
+				resolve(usersContent);
 			})
 			.catch((error) => {
 				reject(error);
@@ -98,7 +99,7 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 		return $q((resolve, reject) => {
 			let object = JSON.stringify(userObj);
 			console.log(`${FBCreds.databaseURL}/users.json`);
-			$http.set(`${FBCreds.databaseURL}/users.json`, object)
+			$http.post(`${FBCreds.databaseURL}/users.json`, object)
 			.then((userId) => {
 				resolve(userId);
 			})

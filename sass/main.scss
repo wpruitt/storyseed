@@ -1,9 +1,161 @@
+$prim: #0f0c0c;
+$sec: #206215;
+$ter: #af5a1e;
+
+#StorySeedApp {
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.filter-container {
+	margin: 0rem 0rem 1rem;
+}
+
+.filter {
+	display: inline-block;
+	width: 50%;
+	align-self: center;
+}
+
 img {
 	max-height: 100%;
 	max-width: 100%;
+	margin: 0px;
 }
 
-.card-image{
-	height: 50px;
-	width: 50px;
+.card-image {
+	max-width: 30%;
+	margin: 0px;
+	float: left;
+	height: 100%;
+	width: 30%;
+	background-size: contain;
+	background-repeat: no-repeat;
 }
+
+aside {
+	padding: 2px;
+	max-width: 70%;
+	display: inline-block;
+}
+
+html {
+	/*border-left: 1px solid $prim;
+	border-right: 1px solid $prim;*/
+}
+
+body {
+/*	border-left: 1px solid $prim;
+	border-right: 1px solid $prim;
+*/	padding-top: 80px;
+	overflow: hidden;
+}
+
+.card {
+/*	border-radius: 10px;
+*/	/*box-shadow: -5px 5px 2px grey; */
+	margin: 0px 0px 1rem;
+	padding: 0px 3px;
+	height: 200px;
+}
+
+.card-header {
+	display: block;
+	height: 30px;
+	max-height: 20%;
+	background-color: $prim;
+	text-align: center;
+	margin: 0px;
+	color: gray;
+	border: 2px solid $prim;
+	border-radius: 10px 10px 0px 0px;
+	text-align: center;
+}
+
+.header-title {
+	display: block;
+	max-height: 100%;
+	max-width: 95%;
+	/*font-size: 3.5w;*/
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.card-block {
+	height: 60%;
+	padding: 0px 1px 0px 0px;
+	font-size: 14px;
+	overflow: hidden;
+}
+
+.card-description p {
+	position: absolute;
+	text-align: center;
+	color: $prim;
+	padding-left: 2px;
+	text-overflow: ellipsis;
+}
+
+.card-footer {
+	height: 20%;
+	max-height: 30%;
+	background-color: $prim;
+	margin: 0px;
+	padding: 0px 0px 2px 2px;
+	border: 2px solid $prim;
+	border-radius: 0px 0px 10px 10px;
+}
+
+.button-holder {
+	padding: 5px;
+	margin: 2px;
+}
+.mybutton {
+	border: 1px solid $prim;
+	border-radius: 4px;
+	margin: 4px;
+	padding: 2px;
+	background-color: $prim;
+	color: white;
+	font-size: 10px;
+	display: inline-block;
+	bottom: 0;
+}
+
+.filter-container {
+	margin-bottom: 30px;
+}
+
+.description-textarea {
+	font-size: 20px
+}
+
+.content-textarea {
+
+}
+
+ng-quill-editor {
+	display: block;
+}
+
+.card-deck {
+	padding-bottom: 35px;
+}
+
+.card-deck .card-block {
+	border-left: 1px solid $prim;
+	border-right: 1px solid $prim;
+}
+
+#counter {
+  border: 1px solid #ccc;
+  border-width: 0px 1px 1px 1px;
+  color: #aaa;
+  padding: 5px 15px;
+  text-align: right;
+}
+
+@import 'navbar';
+@import 'footer';
+@import 'contentView';
+@import 'profile';

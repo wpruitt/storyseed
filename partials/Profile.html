@@ -1,31 +1,66 @@
-<header ng-include src="'partials/Navbar.html'"></header>
-
-<div class="profile-info">
-	<div>
-		<div class="profile-picture-container">
-			<img ng-src="{{profile.image}}">
+<div class="container">
+	<div class="row">
+		<div class="col-xs-4 profile-picture-container">
+			<img ng-src="{{profile.image}}" class="profile-picture img-responsive img-circle">
+			<form>
+				<div class="form-group profile-picture-edit">	
+					<input ng-model="editedImage.image" class="form-control" type="text" placeholder="{{profile.image}}">
+				<button class="mybutton" ng-click="editProfilePicture()">Edit Profile Picture</button>
+				</div>
+			</form>
 		</div>
-		<input ng-model="editedImage.image" type="text" placeholder="{{profile.image}}">
-		<button ng-click="editProfilePicture()">Edit Profile Picture</button>
-	</div>
-	<div class="display-name-container">
-		<h3>{{profile.displayName}}</h3>
-		<input ng-model="editedDisplayName.displayName" type="text" placeholder="{{profile.displayName}}">
-		<button ng-click="editDisplayName()">Edit Display Name</button>
-	</div>
-	<div class="bio-container">
-		<input ng-model="editedBio.bio" type="text" placeholder="{{profile.bio}}">
-		<button ng-click="editBio()">Edit Bio</button>
+		<div class="col-xs-8">
+			<form>
+				<div class="form-group">
+					<h2>{{profile.displayName}}</h2>
+					<input ng-model="editedDisplayName.displayName" maxlength="50" type="text" class="form-control text-center">
+					<button class="mybutton" ng-click="editDisplayName()">Edit Display Name</button>
+				</div>
+			</form>
+			<form>
+				<div class="form-group">
+					<input ng-model="editedEmail.email" class="form-control" type="email" placeholder="{{profile.email}}">
+					<button class="mybutton" ng-click="editEmail()">Edit Email</button>
+				</div>
+
+				<div>
+					<textarea class="form-control profile-bio" maxlength="500" ng-model="editedBio.bio" type="text" rows="10" placeholder="{{profile.bio}}"></textarea>
+					<button class="mybutton" ng-click="editBio()">Edit Bio</button>
+				</div>
+			</form>
+		</div>
 	</div>
 </div>
 
-<div class="search-filter"><input id="filter" type="filter" placeholder="Filter"><div>
+<hr>
 
-<div ng-repeat="content in usersContents">
+<div class="filter-container container-fluid">
+	<input class="filter" type="filter" placeholder="Filter" ng-model="searchText">
+</div>
+
+	<div class="card-deck">
+		<div class="card col-xs-6 col-sm-4 col-md-4 col-lg-3"  ng-repeat="content in usersContents | filter:searchText">
+			<h3 class="card-header"><span class="header-title">{{content.title}}</span></h3>
+			<a ng-click="getContent(content.id)">
+				<div class="card-block">
+					<div class="card-image img-responsive img-thumbnail" style="background-image: url('{{content.image}}')">
+					</div>
+					<aside class="card-description">
+						<p>{{content.description}}</p>
+					</aside>
+				</div>
+			</a>
+			<div class="card-footer"></div>
+		</div>
+	</div>
+
+
+
+<!-- <div ng-repeat="content in usersContents">
 	<div class="card">
 		<div class="card-image">
 			<a ng-click="getContent(content.id)"><img ng-src="{{content.image}}"></a>
 		</div>
 		<div class="card-content">Title: {{content.title}}<br>Description: {{content}}</div>
 	</div>
-</div>
+</div> -->

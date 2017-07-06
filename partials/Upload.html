@@ -1,15 +1,24 @@
-<header ng-include src="'partials/Navbar.html'"></header>
-
-<div>
-	<form class="form">
-		<label for="title">Title</label>
-		<input type="text" ng-model="obj.title">
-		<label for="descripction">Description</label>
-		<input type="textarea" ng-model="obj.description">
-		<label for="image">Image</label>
-		<input type="text" ng-model="obj.image">
-		<label for="content">Content</label>
-		<input type="textarea" ng-model="obj.content">
-		<button ng-click="submit()">Submit</button>
+<div class="container">
+	<form>
+		<div class="form-group">
+			<label for="title">Title</label>
+			<input type="text" class="form-control" ng-model="obj.title">
+		</div>
+		<div class="form-group">
+			<label for="image">Image-Url</label>
+			<input type="text" class="form-control" ng-model="obj.image">
+		</div>
+		<div class="form-group">
+			<label for="descripction">Description</label>
+			<textarea type="textarea" maxlength="500" rows="5" class="form-control description-textarea" ng-model="obj.description" placeholder="{{placeholder.description}}"></textarea>
+		</div>
+		<div class="form-group">
+			<label for="content">Content</label>
+			<ng-quill-editor ng-model="obj.content" on-editor-created="editorCreated(editor)" on-content-changed="contetnChanged(editor, html, text)" modules="counter" class="content-textarea" min-length="10" placeholder="{{placeholder.content}}"></ng-quill-editor>
+			<span id="counter">0</span>
+			<!-- <textarea class="form-control content-textarea" maxlength="2000" rows="20" ng-model="obj.content"></textarea> -->
+		</div>
+		
+			<button class="mybutton" ng-click="submit()">Submit</button>
 	</form>
 </div>

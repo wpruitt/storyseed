@@ -2,31 +2,23 @@
 
 app.controller('ContentViewCtrl', function($scope, FBAuthFactory, FBDataFactory, $location, $routeParams, $route){
 
+
 	let currentUser = FBAuthFactory.getUser();
 
 	FBDataFactory.getContent($routeParams.contentId)
 		.then((content) => {
 			$scope.content = content;
-			console.log("content", $scope.content);
+			// console.log("content", $scope.content);
 		});
 
 	FBDataFactory.getBranches($routeParams.contentId)
-	.then((contentData) => {
-		$scope.branches = contentData;
-		console.log("branches", $scope.branches);
-	})
-	.catch((error) => {
-		console.log("error",error);
-	});
-
-	$scope.showDelBtn = function(contentId) {
-		console.log("current/content", currentUser.uid, contentId);
-		if(currentUser.uid === contentId){
-			return true;
-		}else{
-			return false;
-		}
-	};
+		.then((contentData) => {
+			$scope.branches = contentData;
+			// console.log("branches", $scope.branches);
+		})
+		.catch((error) => {
+			console.log("error",error);
+		});
 
 	let objHasBranches = (obj) => {
 		for(var key in obj) {
@@ -36,9 +28,18 @@ app.controller('ContentViewCtrl', function($scope, FBAuthFactory, FBDataFactory,
 		return false;
 	};
 
+		$scope.changeDetected = false;
+	$scope.editorCreated = function(editor) {
+		console.log(editor);
+	};
+	$scope.contentChanged = function (editor, html,text) {
+		$scope.changeDetected = true;
+		console.log('editor: ', editor, 'html: ', html, 'text', text);
+	};
+
 	$scope.showDelBtn = function(contentId) {
-		console.log("current/content", currentUser.uid, contentId);
-		if(currentUser.uid === contentId){
+		console.log("current/content", currentUser, contentId);
+		if(currentUser === contentId){
 			return true;
 		}else{
 			return false;
@@ -62,6 +63,7 @@ app.controller('ContentViewCtrl', function($scope, FBAuthFactory, FBDataFactory,
 			console.log("goanon", true, $scope.branches);
 			FBDataFactory.makeContentAnon(contentId)
 			.then((response) => {
+				$('.modal-backdrop').remove();
 				console.log("response", response);
 				$route.reload();
 			})
@@ -72,8 +74,16 @@ app.controller('ContentViewCtrl', function($scope, FBAuthFactory, FBDataFactory,
 			console.log("candel", false);
 			FBDataFactory.deleteContent(contentId)
 			.then((response) => {
+				$('.modal-backdrop').remove();
 				console.log("response", response);
-				$route.reload();
+				console.log("scope.content.uid", $scope.content.uid);
+				if ($scope.content.seedId) {
+					$location.url(`/content/${$scope.content.seedId}`);
+					$route.reload();
+				}else{
+					$location.url('/explore');
+					$route.reload();
+				}
 			})
 			.catch((error) => {
 				console.log("error", error);
@@ -92,9 +102,6 @@ app.controller('ContentViewCtrl', function($scope, FBAuthFactory, FBDataFactory,
 		});
 	};
 
-	$scope.createBranch = function(contentId) {
-		$location.url(`/createbranch/${contentId}`);
-	};
 });
 
 	// $scope.moDesc = function(description, event) {

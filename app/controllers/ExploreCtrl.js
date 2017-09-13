@@ -2,6 +2,8 @@
 
 app.controller('ExploreCtrl', function($scope, FBAuthFactory, FBDataFactory, $location){
 
+	let currentUser = FBAuthFactory.getUser();
+
 	FBDataFactory.getAllContent()
 		.then((contents) => {
 			$scope.contents = contents;

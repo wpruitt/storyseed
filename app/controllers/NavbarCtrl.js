@@ -2,24 +2,20 @@
 
 app.controller('NavbarCtrl', function($scope, FBAuthFactory){
 
-	let currentUser = FBAuthFactory.getUser();
+	let currentUser = null;
+	$scope.isLoggedIn = false;
 
-	$scope.currentUser = currentUser;
-	console.log("$scope.currentUser", currentUser);
-
-	FBAuthFactory.isAuthenticated()
-	.then((user) => {
-		console.log("userInfo", user);
-		$scope.login = "Logout";
-		$scope.isLoggedIn = true;
-		console.log("$scope.isLoggedIn", $scope.isLoggedIn);
-	})
-	.catch((error) => {
-		console.log("userError", error);
-		$scope.login = "Login";
-		$scope.isLoggedIn = false;
-		console.log("Error-$scope.isLoggedIn", $scope.isLoggedIn);
+	firebase.auth().onAuthStateChanged(function(user){
+		if (user) {
+			console.log("userInfo", user);
+			$scope.isLoggedIn = true;
+			$scope.currentUser = user;
+			console.log("$scope.isLoggedIn", $scope.isLoggedIn);
+		}else{
+			console.log("no user");
+			$scope.isLoggedIn = false;
+			console.log("Error-$scope.isLoggedIn", $scope.isLoggedIn);
+		}
 	});
-
 
 });

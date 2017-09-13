@@ -1,25 +1,66 @@
-<header ng-include="'partials/Navbar.html'"></header>
-
-<div class="card-holder">
+<div class="container">
 	<div class="card">
-		<div class="card-image">
-			<img ng-src="{{content.image}}">
+		<div class="card-block">
+			
+				<img class="card-image img-responsive" ng-src="{{content.image}}">
+			
+			<aside class="card-title-description">
+				<h2>{{content.title}}</h2>
+				<label>Description: </label>
+				<p>{{content.description}}</p>
+			</aside>
 		</div>
-		<div class="card-title-description">
-			<label>Title: </label>
-			<h4>{{content.title}}</h5>
-			<label>Description: </label>
-			<p>{{content.description}}</p>
-		<button ng-click="createBranch(content.id)">Create Branch</button>
-		<button ng-if="showDelBtn(content.uid)" ng-click="deleteContent(content.id)">Delete Content</button>
+		<span class="button-holder">
+			<button class="mybutton" ng-click="createBranch(content.id)">Create Branch</button>
+			<button class="mybutton" ng-if="showDelBtn(content.uid)" data-toggle="modal" data-target="#delModal">Delete Content</button>
+		</span>
 	</div>
 </div>
-<br>
-<div ng-repeat="branch in branches">
-	<div class="branch-card">
-		<div class="branch-card-image">
-			<a ng-click="getBranch(branch.id)"><img ng-src="{{branch.image}}"></a>
+	<hr>
+	<div class="container-fluid">
+		<div class="row">
+			<p ng-bind-html="content.content" class="content col-xs-8 col-xs-offset-2"></p>
 		</div>
-		<div class="branch-card-content">Title: {{branch.title}}<br>Description: {{branch.description}}</div>
+	</div>
+
+<!-- Modal -->
+<div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-card">
+        <h3 class="modal-title card-header" id="myModalLabel"><span>Hold your horses....</span></h3>
+      	<div class="modal-body modal-card-body">
+      		<h4>Do you really want to delete {{content.title}}?</h4>
+        	<p>Only content without branches can be deleted. If you content has been branched off of, it will become annonymous.</p>
+        	<div>
+	        	<button class="mybutton" data-dismiss="modal">Cancel</button>
+	       		<button type="button" class="mybutton" data-dismiss="modal" ng-click="deleteContent(content.id)">Delete</button>
+	        </div>
+        </div>
+        <div class="modal-footer card-footer">
+      	</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="filter-container container-fluid">
+	<input class="filter" type="filter" placeholder="Filter" ng-model="searchText">
+</div>
+
+
+<div class="card-deck">
+	<div class="card col-xs-6 col-sm-4 col-md-4 col-lg-3" ng-repeat="branch in branches | filter:searchText">
+		<h3 class="card-header"><span class="header-title">{{branch.title}}</span></h3>
+		<a ng-click="getBranch(branch.id)">
+			<div class="card-block">
+				<div class="card-image img-responsive img-thumbnail" style="background-image: url('{{branch.image}}')">
+				</div>
+				<aside class="card-description">
+					<p>{{branch.description}}</p>
+				</aside>
+			</div>
+		</a>
+		<div class="card-footer"></div>
 	</div>
 </div>
+

@@ -3,24 +3,32 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Story Seeds</title>
-	<link rel="stylesheet" type="text/css" href="/css/main.css">
+	<link rel="stylesheet" type="text/css" href="lib/node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="lib/node_modules/quill/dist/quill.snow.css">
 </head>
-<body id="StorySeedApp">
+<!-- style="background-image: url('/images/Yggdrasil.jpg')" -->
+<body id="StorySeedApp" ng-app="StorySeedApp">
+	<ng-include src="'/partials/Navbar.html'"></ng-include>
 
-	<div ng-app="StorySeedApp">
-		
-		<div ng-view>Test
-		
-		</div>
-
-	</div>
+	<div ng-view></div>
 	
-
-	<footer>Story Seed - WDPJ&trade;, &copy; 2017</footer>
-	<script type="text/javascript" src="./lib/node_modules/angular/angular.min.js"></script>
-	<script type="text/javascript" src="./lib/node_modules/angular-route/angular-route.min.js"></script>
-	<script type="text/javascript" src="./lib/node_modules/firebase/firebase.js"></script>
+	<nav class="foot-nav navbar navbar-fixed-bottom">
+		<div class="nav-wrapper container-fluid">
+				<span class="text-muted">Story Seed - WDPJ&trade;, &copy; 2017</span>
+		</div>
+	</nav>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script type="text/javascript" src="/lib/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/lib/node_modules/angular/angular.min.js"></script>
+	<script type="text/javascript" src="/lib/node_modules/angular-route/angular-route.min.js"></script>
+	<script type="text/javascript" src="/lib/node_modules/angular-sanitize/angular-sanitize.min.js"></script>
+	<script type="text/javascript" src="/lib/node_modules/quill/dist/quill.min.js"></script>
+	<script type="text/javascript" src="/lib/node_modules/ng-quill/dist/ng-quill.min.js"></script>
+	<script type="text/javascript" src="/lib/node_modules/firebase/firebase.js"></script>
+	<!-- StorySeedApp -->
 	<script src="app/StorySeedApp.js"></script>
+	<!-- ApiCreds -->
 	<script type="text/javascript" src="app/values/FBCreds.js"></script>
 	<!--Factories-->
 	<script src="app/factories/FBAuthFactory.js"></script>

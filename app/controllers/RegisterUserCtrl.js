@@ -2,10 +2,9 @@
 
 app.controller('RegisterUserCtrl', function($scope, FBAuthFactory, FBDataFactory, $location, $route){
 
-	// if(FBAuthFactory.isAuthenticated()) {
-	// 	console.log(""	}else{)
-
-	// }
+	if(FBAuthFactory.isAuthenticated()) {
+		$location.url('#!/explore');
+	}
 
 	$scope.obj = {
 		displayName: "",

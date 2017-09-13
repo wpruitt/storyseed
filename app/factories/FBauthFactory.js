@@ -1,6 +1,6 @@
 "use strict";
 
-app.factory('FBAuthFactory', ['$location', function ($location) {
+app.factory('FBAuthFactory', function ($location) {
 
 	let currentUser = null;
 
@@ -15,17 +15,22 @@ app.factory('FBAuthFactory', ['$location', function ($location) {
 
 	let FBLoginUser = function(email, password) {
 		return firebase.auth().signInWithEmailAndPassword(email, password)
-		.catch(function(error) {
+		.catch(function(error) {			
 			let errorCode = error.code;
-			let errorMessage = error.message;
-			console.log("error:", errorCode, errorMessage);
-		});
+  			let errorMessage = error.message;
+  			if (errorCode === 'auth/wrong-password') {
+				alert('Wrong password.');
+			} else {
+			    alert(errorMessage);
+			}
+			console.log("error:", error);
+		});	
 	};
 
 	let FBLogoutUser = function() {
 		return firebase.auth().signOut()
 		.then(function() {
-			$location.url("/explore");
+			$location.url("#!/explore");
 		})
 		.catch(function(error) {
   			let errorCode = error.code;
@@ -38,11 +43,11 @@ app.factory('FBAuthFactory', ['$location', function ($location) {
 		return new Promise ((resolve,reject) => {
 			firebase.auth().onAuthStateChanged(function(user) {
 		 		if (user) {
-		 			currentUser = user;
+		 			currentUser = user.uid;
 		  			console.log("user", user);
-		  			resolve(true);
+		  			resolve(user);
 				} else {
-					resolve(false);
+					resolve();
 				}
 			});
 		});
@@ -54,4 +59,4 @@ app.factory('FBAuthFactory', ['$location', function ($location) {
 	};
 
 	return {FBRegisterUser, FBLoginUser, FBLogoutUser, isAuthenticated, getUser};
-}]);
+});

@@ -1,11 +1,12 @@
 "use strict";
 
-app.controller('UploadCtrl', function($scope, $routeParams, FBDataFactory, FBAuthFactory, $location) {
+app.controller('UploadCtrl', function($scope, $routeParams, FBDataFactory, FBAuthFactory, $location, $timeout) {
 
 	let currentUser = FBAuthFactory.getUser();
+	// let quillContent = quill.getContents();
 	
 	$scope.obj = {
-		uid: currentUser.uid,
+		uid: currentUser,
 		type: "",
 		title: "",
 		description: "",
@@ -18,6 +19,21 @@ app.controller('UploadCtrl', function($scope, $routeParams, FBDataFactory, FBAut
 		branchIds: ""
 	};
 
+	$scope.placeholder = {
+		description: `Tell us what your seed will grow into.
+Keep in mind that others may take your idea in a different direction.
+Explain the theme, identify key characters, initial setting, etc....`,
+		content: `Write out your Story here.`
+	};
+
+	$scope.changeDetected = false;
+	$scope.editorCreated = function(editor) {
+		console.log(editor);
+	};
+	$scope.contentChanged = function (editor, html,text) {
+		$scope.changeDetected = true;
+		console.log('editor: ', editor, 'html: ', html, 'text', text);
+	};
 
 	$scope.submit = function() {
 		FBDataFactory.createContent($scope.obj)
@@ -40,4 +56,5 @@ app.controller('UploadCtrl', function($scope, $routeParams, FBDataFactory, FBAut
 				console.log("Error:", error);
 		});
 	};
+
 });

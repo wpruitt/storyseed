@@ -1,11 +1,11 @@
 "use strict";
 
-app.controller('CreateBranchCtrl', function($scope, FBAuthFactory, FBDataFactory, $location, $routeParams) {
+app.controller('CreateBranchCtrl', function($scope, FBAuthFactory, FBDataFactory, $location, $routeParams, $timeout) {
 
 	let currentUser = FBAuthFactory.getUser();
 
 	$scope.obj = {
-		uid: currentUser.uid,
+		uid: currentUser,
 		type: "",
 		title: "",
 		description: "",
@@ -15,6 +15,21 @@ app.controller('CreateBranchCtrl', function($scope, FBAuthFactory, FBDataFactory
 		NSFW: false,
 		seedId: $routeParams.contentId,
 		content: ""
+	};
+
+	$scope.placeholder = {
+		description: `Give a little description of your branch.
+Talk about any large changes from your seeded content.`,
+		content: "Type out story here."
+	};
+
+	$scope.changeDetected = false;
+	$scope.editorCreated = function(editor) {
+		console.log(editor);
+	};
+	$scope.contentChanged = function (editor, html,text) {
+		$scope.changeDetected = true;
+		console.log('editor: ', editor, 'html: ', html, 'text', text);
 	};
 
 	$scope.submit = function() {
@@ -47,4 +62,5 @@ app.controller('CreateBranchCtrl', function($scope, FBAuthFactory, FBDataFactory
 				console.log("Error:", error);
 		});
 	};
+
 });

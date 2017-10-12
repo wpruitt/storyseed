@@ -1,6 +1,6 @@
-#Story Seeds
+# Story Seeds
 
-####Creative Writing Linked
+#### Creative Writing Linked
 
 Story Seeds provides the framework for creative writers to create and collaborate at will.
 Users are able to create original content and have users create content based on their own,
@@ -12,7 +12,7 @@ Currently (12 Oct 17):
 Researching recreating in more up to date framework
 WIll add link to new repository.
 
-###Built with:
+### Built with:
 
 - AngularJS
 - Bootstrap

@@ -29,14 +29,15 @@
     "grunt-contrib-jshint": "^1.1.0",
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
-    "uglify-es": "^3.0.17"
+    "jslint": "^0.11.0",
+    "uglify-es": "^3.1.5"
   },
   "dependencies": {
     "angular": "^1.6.4",
     "angular-route": "^1.6.4",
     "angular-sanitize": "^1.6.4",
     "bootstrap": "^3.3.7",
-    "firebase": "^4.1.2",
+    "firebase": "^4.6.0",
     "matchdep": "^1.0.1"
   }
 }

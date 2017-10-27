@@ -1,7 +1,10 @@
 "use strict";
 
+// FBDataFactory:
+// Factory page to interact with Firebase data objects
 app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBCreds) {
 
+	// Returns all content
 	const getAllContent = () => {
 		return $q((resolve, reject) => {
 			$http.get(`${FBCreds.databaseURL}/content.json`)
@@ -16,6 +19,7 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 		});
 	};
 
+	// Returns specific content based on id
 	const getContent = (id) => {
 		return $q((resolve, reject) =>{
 			$http.get(`${FBCreds.databaseURL}/content/${id}.json`)
@@ -29,6 +33,7 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 		});
 	};
 
+	// Returns all immediate branched content of specified seedId
 	const getBranches = (seedId) => {
 		return $q((resolve, reject) => {
 			$http.get(`${FBCreds.databaseURL}/content.json?orderBy="seedId"&equalTo="${seedId}"`)
@@ -42,6 +47,7 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 		});
 	};
 
+	// Returns all content of specified user by userId
 	const getUsersContent = (userId) =>{
 		return $q((resolve, reject) => {
 			console.log(`${FBCreds.databaseURL}/content.json?orderBy="uid"&equalTo="${userId}"`);
@@ -56,6 +62,7 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 		});
 	};
 
+	// Creates a content object in DB
 	const createContent = (contentObj) => {
 		return $q((resolve, reject) =>{
 			let object = JSON.stringify(contentObj);
@@ -69,6 +76,8 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 		});
 	};
 
+	// Assigns id to content object
+	// Refactor: add to createContent, should be able to troubleshoot simultaneous call issue now
 	const addId = (contentId, idObj) => {
 		return $q((resolve, reject) => {
 			let object = JSON.stringify(idObj);
@@ -82,6 +91,7 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 		});
 	};
 
+	// Adds branch id to content object
 	const addBranchId = (contentId, branchObj) => {
 		return $q((resolve, reject) => {
 			let object = JSON.stringify(branchObj);
@@ -95,6 +105,7 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 		});
 	};
 
+	// Creates user obj
 	const createUser = (userObj) => {
 		return $q((resolve, reject) => {
 			let object = JSON.stringify(userObj);
@@ -109,6 +120,7 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 		});
 	};
 
+	// Gets user information object based on userId
 	const getUser = (userId) => {
 		return $q((resolve, reject) => {
 			console.log(`${FBCreds.databaseURL}/users.json?orderBy="uid"&equalTo="${userId}"`);
@@ -122,6 +134,7 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 		});
 	};
 
+	// Deletes user object from DB
 	const delUser = (userId) => {
 		return $q((resolve, reject) => {
 			$http.delete(`${FBCreds.databaseURL}/users.json?orderBy="uid"&equalTo="${userId}"`)
@@ -134,6 +147,8 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 		});
 	};
 
+	// Edits user object
+	// Refactor: should be able to get patch to work properly
 	const editProfile = (editedObj, userId) => {
 		return $q((resolve, reject) =>{
 			let newObj = JSON.stringify(editedObj);
@@ -150,6 +165,7 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 		});
 	};
 
+	// Unassigns user to content object
 	const makeContentAnon = (contentId) => {
 		return $q((resolve, reject) => {
 			$http.delete(`${FBCreds.databaseURL}/content/${contentId}/uid.json`)
@@ -162,6 +178,7 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 		});
 	};
 
+	// Deletes content object
 	const deleteContent = (contentId) => {
 		return $q((resolve, reject) => {
 			$http.delete(`${FBCreds.databaseURL}/content/${contentId}.json`)
@@ -174,6 +191,18 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 		});
 	};
 
-	return {getAllContent, getContent, getUsersContent, createContent, getBranches, addId, addBranchId, createUser, getUser, delUser, editProfile, makeContentAnon, deleteContent};
+	return {getAllContent, 
+			getContent,
+			getUsersContent,
+			createContent,
+			getBranches,
+			addId,
+			addBranchId,
+			createUser,
+			getUser,
+			delUser,
+			editProfile,
+			makeContentAnon,
+			deleteContent};
 
 }]);

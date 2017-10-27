@@ -1,9 +1,14 @@
 "use strict";
 
+// FBAuthFactory:
+// Factory page to interact with Firebase User 
+// Login/Logout/Authentication and other user fuctions
 app.factory('FBAuthFactory', function ($location) {
 
+	// Variable to store current logged in user
 	let currentUser = null;
 
+	// Uses given email/password combination to register a new user via Firebase
 	let FBRegisterUser = function(email, password) {
 		return  firebase.auth().createUserWithEmailAndPassword(email, password)
 		.catch(function(error) {
@@ -13,6 +18,7 @@ app.factory('FBAuthFactory', function ($location) {
 		});
 	};
 
+	// Uses given email/password combination to sign user in via Firebase
 	let FBLoginUser = function(email, password) {
 		return firebase.auth().signInWithEmailAndPassword(email, password)
 		.catch(function(error) {			
@@ -27,6 +33,7 @@ app.factory('FBAuthFactory', function ($location) {
 		});	
 	};
 
+	// Uses given email/passowrd combination to sign user out via Firebase
 	let FBLogoutUser = function() {
 		return firebase.auth().signOut()
 		.then(function() {
@@ -39,6 +46,8 @@ app.factory('FBAuthFactory', function ($location) {
   		});	
 	};
 
+	// Verifies user is authenticated
+	// returns current user logged in
 	let isAuthenticated = function (){
 		return new Promise ((resolve,reject) => {
 			firebase.auth().onAuthStateChanged(function(user) {
@@ -54,9 +63,14 @@ app.factory('FBAuthFactory', function ($location) {
 
 	};
 
+	// Assigns current user information to currentUser variable 
 	let getUser = function(){
 		return currentUser;
 	};
 
-	return {FBRegisterUser, FBLoginUser, FBLogoutUser, isAuthenticated, getUser};
+	return {FBRegisterUser,
+			FBLoginUser,
+			FBLogoutUser,
+			isAuthenticated,
+			getUser};
 });

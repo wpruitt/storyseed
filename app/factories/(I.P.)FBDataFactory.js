@@ -4,7 +4,7 @@
 // Factory page to interact with Firebase data objects
 app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBCreds) {
 
-	// Returns all content
+	// Returns all content +
 	const getAllContent = () => {
 		return $q((resolve, reject) => {
 			$http.get(`${FBCreds.databaseURL}/content.json`)

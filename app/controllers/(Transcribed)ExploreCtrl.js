@@ -14,7 +14,7 @@ app.controller('ExploreCtrl', function($scope, FBAuthFactory, FBDataFactory, $lo
 			console.log("contents", $scope.contents);
 		});
 
-	// Retrieve content of specified contentId
+	// Retrieve content of specified contentId +
 	$scope.getContent = function(contentId) {
 		FBDataFactory.getContent(contentId)
 		.then((content) => {

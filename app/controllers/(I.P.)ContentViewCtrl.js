@@ -7,8 +7,7 @@ app.controller('ContentViewCtrl', function($scope, FBAuthFactory, FBDataFactory,
 	// Assigns user data to currentUser variable
 	let currentUser = FBAuthFactory.getUser();
 
-	// Retrieves content specified by contentId in url
-	// applies content date to content scope
+	// Retrieves content specified by contentId in url +
 	FBDataFactory.getContent($routeParams.contentId)
 		.then((content) => {
 			$scope.content = content;

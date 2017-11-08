@@ -19,7 +19,7 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 		});
 	};
 
-	// Returns specific content based on id
+	// Returns specific content based on id +
 	const getContent = (id) => {
 		return $q((resolve, reject) =>{
 			$http.get(`${FBCreds.databaseURL}/content/${id}.json`)

@@ -53,7 +53,7 @@ app.controller('ContentViewCtrl', function($scope, FBAuthFactory, FBDataFactory,
 		}
 	};
 
-	// Retrieves content and assigns to scope
+	// Retrieves content and assigns to scope +
 	$scope.getBranch = function(contentId) {
 		FBDataFactory.getContent(contentId)
 		.then((content) => {

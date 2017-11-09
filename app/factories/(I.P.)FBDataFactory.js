@@ -33,7 +33,7 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 		});
 	};
 
-	// Returns all immediate branched content of specified seedId
+	// Returns all immediate branched content of specified seedId +
 	const getBranches = (seedId) => {
 		return $q((resolve, reject) => {
 			$http.get(`${FBCreds.databaseURL}/content.json?orderBy="seedId"&equalTo="${seedId}"`)

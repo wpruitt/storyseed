@@ -8,9 +8,10 @@ creating anything to expand on the ideas and stories existing.
 Intricate webs can be weaved and expanded on in whatever ways the user can imagine,
 or continue on down one line, neverending.
 
-Currently (12 Oct 17):
-Researching recreating in more up to date framework
-WIll add link to new repository.
+Currently (10 Nov 17):
+Rebuilding in Angular JS
+https://github.com/wpruitt/StorySeeds-b2
+Planning on React reader
 
 ### Built with:
 

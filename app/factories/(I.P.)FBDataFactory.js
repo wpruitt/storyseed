@@ -47,7 +47,7 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 		});
 	};
 
-	// Returns all content of specified user by userId
+	// Returns all content of specified user by userId +
 	const getUsersContent = (userId) =>{
 		return $q((resolve, reject) => {
 			console.log(`${FBCreds.databaseURL}/content.json?orderBy="uid"&equalTo="${userId}"`);
@@ -62,7 +62,7 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 		});
 	};
 
-	// Creates a content object in DB
+	// Creates a content object in DB +
 	const createContent = (contentObj) => {
 		return $q((resolve, reject) =>{
 			let object = JSON.stringify(contentObj);
@@ -76,7 +76,7 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 		});
 	};
 
-	// Assigns id to content object
+	// Assigns id to content object +
 	// Refactor: add to createContent, should be able to troubleshoot simultaneous call issue now
 	const addId = (contentId, idObj) => {
 		return $q((resolve, reject) => {
@@ -91,7 +91,7 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 		});
 	};
 
-	// Adds branch id to content object
+	// Adds branch id to content object +
 	const addBranchId = (contentId, branchObj) => {
 		return $q((resolve, reject) => {
 			let object = JSON.stringify(branchObj);
@@ -105,7 +105,7 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 		});
 	};
 
-	// Creates user obj
+	// Creates user obj +
 	const createUser = (userObj) => {
 		return $q((resolve, reject) => {
 			let object = JSON.stringify(userObj);
@@ -120,7 +120,7 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 		});
 	};
 
-	// Gets user information object based on userId
+	// Gets user information object based on userId +
 	const getUser = (userId) => {
 		return $q((resolve, reject) => {
 			console.log(`${FBCreds.databaseURL}/users.json?orderBy="uid"&equalTo="${userId}"`);
@@ -147,7 +147,7 @@ app.factory('FBDataFactory',  ["$q", "$http", "FBCreds", function($q, $http, FBC
 		});
 	};
 
-	// Edits user object
+	// Edits user object +
 	// Refactor: should be able to get patch to work properly
 	const editProfile = (editedObj, userId) => {
 		return $q((resolve, reject) =>{

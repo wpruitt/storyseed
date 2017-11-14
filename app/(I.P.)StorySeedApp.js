@@ -2,6 +2,7 @@
 
 const app = angular.module("StorySeedApp", ["ngRoute", "ngQuill", "ngSanitize"]);
 
+// 
 let isAuth = (FBAuthFactory) => new Promise((resolve, reject) => {
 	FBAuthFactory.isAuthenticated() 
 	.then((userExists) => {

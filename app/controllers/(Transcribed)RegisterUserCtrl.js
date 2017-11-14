@@ -4,12 +4,12 @@
 // Controller handling DOM <-> DB interactions for registering a user
 app.controller('RegisterUserCtrl', function($scope, FBAuthFactory, FBDataFactory, $location, $route){
 
-	// Verifies if user is already logged in and sends to explore page
+	// Verifies if user is already logged in and sends to explore page +
 	if(FBAuthFactory.isAuthenticated()) {
 		$location.url('#!/explore');
 	}
 
-	// Binding of regstrations object
+	// Binding of regstrations object +
 	$scope.obj = {
 		displayName: "",
 		email: "",
@@ -17,7 +17,7 @@ app.controller('RegisterUserCtrl', function($scope, FBAuthFactory, FBDataFactory
 		bio: ""
 	};
 
-	// Sends user registrations object to Firebase
+	// Sends user registrations object to Firebase +
 	$scope.register = function() {
 		FBAuthFactory.FBRegisterUser($scope.obj.email, $scope.registerPassword)
 		.then((regData) => {
